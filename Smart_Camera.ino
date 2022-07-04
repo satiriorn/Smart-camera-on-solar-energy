@@ -34,6 +34,7 @@ int getNextBufferLen();
 bool dataAvailable = false;
 
 static void IRAM_ATTR detectsMovement(void * arg) {
+  Serial.println("Motion Detected");
   isDetected = true;
 }
 
@@ -165,16 +166,18 @@ void setup()
 
 void loop()
 {
+  /*
     if(isDetected){
-      Serial.println("Motion Detected");
+      
       send_photo(CHAT_ID);
+      isDetected = false;
       delay(3000);
     }
     Serial.println("Motion not Detected");
     delay(1000);
   //if (millis() - bot_lasttime > BOT_MTBS)
   //{
-  /*
+  */
     int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
 
     while (numNewMessages)
@@ -185,7 +188,7 @@ void loop()
     }
     delay(1000);
     bot_lasttime = millis();
-    */
+    
 }
 
 void send_photo(String chat_id){
